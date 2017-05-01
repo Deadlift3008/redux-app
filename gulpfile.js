@@ -1,8 +1,9 @@
-var gulp = require('gulp'),
+const gulp = require('gulp'),
     sass = require('gulp-sass'),
     babel = require('gulp-babel'),
     babelify = require('babelify'),
     browserify = require('browserify'),
+    buffer = require('vinyl-buffer'),
     source = require('vinyl-source-stream');
 
 gulp.task("styles",function(){
@@ -13,15 +14,13 @@ gulp.task("styles",function(){
 });
 
 gulp.task("js",function(){
-    return browserify({
-        entries: './src/index.js',
-        debug: true
-    })
+    return browserify('./src/index.js')
     .transform('babelify', {
         presets: ['es2015', 'react']
     })
     .bundle()
     .pipe(source('bundle.js'))
+    .pipe(buffer())
     .pipe(gulp.dest('static/js'));
 });
 
