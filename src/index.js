@@ -8,7 +8,7 @@ const store = configureStore();
 render(
     <Provider store={store}>
         <div className="app">
-           "Hello World!"
+           "Hellow World!"
         </div>
     </Provider>,
     document.getElementById('root')
