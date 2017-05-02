@@ -16,7 +16,8 @@ gulp.task("styles",function(){
 gulp.task("js",function(){
     return browserify('./src/index.js')
     .transform('babelify', {
-        presets: ['es2015', 'react']
+        presets: ['es2015', 'react'],
+        plugins: ['transform-object-rest-spread']
     })
     .bundle()
     .pipe(source('bundle.js'))

@@ -1,27 +1,31 @@
 import React, {Component} from 'react';
-import bindActionCreators from 'redux';
-import connect from 'react-redux';
-import testAction from '../actions/main_action';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import * as Actions from '../actions/main_action';
 
 class App extends Component{
+    constructor(){
+        super();
+    }
     render(){
         return <div className="test_block">
-                <button onClick={this.props.testAction}></button>
-            {this.props.test}
+                <button onClick={this.props.Actions.testAction}>Добавить</button>
+                {this.props.state.data}
+                <button onClick={this.props.Actions.testAction2}>Очистить</button>
             </div>
     }
 }
 
 function mapStateToProps(state) {
     return {
-        test: state
+        state: state
     }
 }
 
-function mapDispatchToProps(state){
+function mapDispatchToProps(dispatch){
     return {
-        testAction: bindActionCreators(testAction, dispatch)
+        Actions: bindActionCreators(Actions, dispatch)
     }
 }
 
-export default connect(mapDispatchToProps, mapStateToProps)(App)
+export default connect(mapStateToProps,mapDispatchToProps)(App)
