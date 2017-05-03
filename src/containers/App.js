@@ -6,13 +6,12 @@ import * as Actions from '../actions/main_action';
 class App extends Component{
     constructor(){
         super();
+
     }
     render(){
-        return <div className="test_block">
-                <button onClick={this.props.Actions.testAction}>Добавить</button>
-                {this.props.state.data}
-                <button onClick={this.props.Actions.testAction2}>Очистить</button>
-            </div>
+        return <div className="pages-wrap">
+            {/* Here will be display respective page, 1 component - 1 page  */}
+        </div>
     }
 }
 
