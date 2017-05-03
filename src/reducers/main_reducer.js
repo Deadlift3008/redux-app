@@ -1,9 +1,9 @@
+import {Route} from '../store/route';
+
 export default function MainReducer(state = intialState, action){
     switch(action.type){
-        case "test":
-            return { ...state, data: action.payload };
-        case "test2":
-            return { ...state, data: action.payload};
+        case "update_page":
+            return Route(state);
         default:
             return state;
     }

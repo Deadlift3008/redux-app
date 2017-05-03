@@ -1,18 +1,21 @@
 export const ROUTES = [
     {
-        hash: "main",
+        hash: "",
         page_id: 1,
-        name: "Main page"
+        name: "Main page",
+        component: "Main"
     },
     {
-        hash: "info",
+        hash: "#info",
         page_id: 2,
-        name: "Info page"
+        name: "Info page",
+        component: "Info"
     },
     {
-        hash: "other",
+        hash: "#other",
         page_id: 3,
-        name: "Other stuff page"
+        name: "Other stuff page",
+        component: "Other"
     }
 
 ];
