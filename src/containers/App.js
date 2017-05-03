@@ -12,14 +12,14 @@ class App extends Component{
     constructor(){
         super();
         this.definePage = this.definePage.bind(this);
+        //for routing
         window.addEventListener("hashchange",() => {
             this.props.Actions.UpdatePage();
+            this.forceUpdate();
         });
     }
 
     definePage(){
-        console.log("cur page");
-        console.log(this.props.currentPage);
         switch(this.props.currentPage){
             case "Main":
                 return <Main />;
