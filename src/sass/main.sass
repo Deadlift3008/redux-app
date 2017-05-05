@@ -24,11 +24,32 @@ body
     padding: 20px
     text-align: center
     display: block
+    animation-duration: .75s
+    animation-fill-mode: both
 
 
 a
   text-decoration: none
   color: inherit
+
+
+@keyframes slideInUp
+  from
+    transform: translate3d(0, 100%, 0)
+    visibility: visible
+  to
+    transform: translate3d(0, 0, 0)
+
+
+
+
+
+.loadAnimation
+  -webkit-backface-visibility: visible !important
+  backface-visibility: visible !important
+  animation-name: slideInUp
+
+
 
 
 .header

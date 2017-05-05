@@ -22,11 +22,26 @@ import Paper from 'material-ui/Paper';
 class App extends Component{
     constructor(){
         super();
+        this.state = {
+            paper: null
+        }
         this.getPage = this.getPage.bind(this);
+        this.animate = this.animate.bind(this);
         //for routing
         window.addEventListener("hashchange",() => {
             this.props.Actions.UpdatePage();
+            if(!this.state.paper){
+                this.state.paper = document.querySelector(".pages-wrap__paper");
+            }
+            this.animate(this.state.paper);
         });
+    }
+
+    animate(el){
+        el.classList.add("loadAnimation");
+        setTimeout(()=>{
+            el.classList.remove("loadAnimation");
+        },750);
     }
 
     getPage(){
@@ -52,7 +67,7 @@ class App extends Component{
         return <MuiThemeProvider>
                     <div className="pages-wrap">
                         <Header dropDownValue={this.props.currentPageId}/>
-                        <Paper className="pages-wrap__paper" zDepth={3}>
+                        <Paper className="pages-wrap__paper" zDepth={3} >
                             {Page}
                         </Paper>
                     </div>
