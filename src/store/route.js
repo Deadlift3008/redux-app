@@ -12,7 +12,7 @@ export function Route(state = {}){
         }
     });
 
-    if(!state.currentPageId){
+    if(!state.currentPageId || window.location.hash === ""){
         // set main
         state.currentPageId = ROUTES[0].page_id;
         state.currentPage = ROUTES[0].component;

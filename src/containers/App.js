@@ -3,13 +3,18 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as Actions from '../actions/main_action';
 
+//tap event for react components
 import injectTapEventPlugin from 'react-tap-event-plugin';
-
 injectTapEventPlugin();
 
+//components
 import Info from '../components/info';
 import Main from '../components/main';
 import Other from '../components/other';
+import Header from '../components/header';
+
+//material ui components
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component{
     constructor(){
@@ -41,9 +46,12 @@ class App extends Component{
     render(){
         let Page = this.getPage();
 
-        return <div className="pages-wrap">
-            {Page}
-        </div>
+        return <MuiThemeProvider>
+                    <div className="pages-wrap">
+                        <Header dropDownValue={this.props.currentPageId}/>
+                        {Page}
+                    </div>
+                </MuiThemeProvider>
     }
 }
 
