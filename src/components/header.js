@@ -8,6 +8,9 @@ import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import DropDownMenu from 'material-ui/DropDownMenu';
 
+
+
+
 export default class Header extends Component{
     constructor(props) {
         super(props);
@@ -29,9 +32,7 @@ export default class Header extends Component{
         return <div className="header">
             <Toolbar>
                 <ToolbarGroup firstChild={true}>
-                    <FontIcon className="muidocs-icon-custom-sort" />
-                    <ToolbarTitle text="Page" />
-                    <FontIcon className="muidocs-icon-custom-sort" />
+                    <ToolbarTitle text="Page" className="header__title"/>
                     <ToolbarSeparator />
                     <DropDownMenu value={this.state.value} onChange={this.handleChange}>
                         <MenuItem value={1} primaryText="Main" onClick={this.linkTo.bind(this,"")}/>

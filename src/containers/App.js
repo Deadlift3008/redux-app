@@ -18,18 +18,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
 
 
-const style = {
-    minHeight: 300,
-    width: '100%',
-    marginTop: 20,
-    marginBottom: 40,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    maxWidth: 1100,
-    padding: 20,
-    textAlign: 'center',
-    display: 'block',
-};
 
 class App extends Component{
     constructor(){
@@ -64,7 +52,7 @@ class App extends Component{
         return <MuiThemeProvider>
                     <div className="pages-wrap">
                         <Header dropDownValue={this.props.currentPageId}/>
-                        <Paper style={style} zDepth={3}>
+                        <Paper className="pages-wrap__paper" zDepth={3}>
                             {Page}
                         </Paper>
                     </div>
