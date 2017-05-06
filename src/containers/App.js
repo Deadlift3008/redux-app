@@ -30,9 +30,6 @@ class App extends Component{
         //for routing
         window.addEventListener("hashchange",() => {
             this.props.Actions.UpdatePage();
-            if(!this.state.paper){
-                this.state.paper = document.querySelector(".pages-wrap__paper");
-            }
             this.animate(this.state.paper);
         });
     }
@@ -42,6 +39,10 @@ class App extends Component{
         setTimeout(()=>{
             el.classList.remove("loadAnimation");
         },300);
+    }
+
+    componentDidMount(){
+        this.state.paper = document.querySelector(".pages-wrap__paper");
     }
 
     getPage(){
