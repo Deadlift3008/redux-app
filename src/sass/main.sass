@@ -24,7 +24,7 @@ body
     padding: 20px
     text-align: center
     display: block
-    animation-duration: .75s
+    animation-duration: .3s
     animation-fill-mode: both
 
 
@@ -33,12 +33,12 @@ a
   color: inherit
 
 
-@keyframes slideInUp
+@keyframes fadeIn
   from
-    transform: translate3d(0, 100%, 0)
-    visibility: visible
+    opacity: 0
   to
-    transform: translate3d(0, 0, 0)
+    opacity: 1
+
 
 
 
@@ -47,7 +47,8 @@ a
 .loadAnimation
   -webkit-backface-visibility: visible !important
   backface-visibility: visible !important
-  animation-name: slideInUp
+  animation-timing-function: ease-in
+  animation-name: fadeIn
 
 
 

@@ -41,7 +41,7 @@ class App extends Component{
         el.classList.add("loadAnimation");
         setTimeout(()=>{
             el.classList.remove("loadAnimation");
-        },750);
+        },300);
     }
 
     getPage(){
