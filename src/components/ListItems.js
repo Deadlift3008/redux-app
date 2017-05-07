@@ -11,6 +11,7 @@ export default class ListItems extends Component{
     render(){
         return <div className="main-page__list-items">
                 <h2>List items</h2>
+
             </div>
     }
 }

@@ -1,3 +1,6 @@
+$smalldesk: 1200px;
+$mobile: 500px;
+
 *
   box-sizing: border-box
   margin: 0
@@ -7,6 +10,7 @@ body
   position: relative
   font-size: 16px
   min-height: 100vh
+  font-family: 'Roboto','Tahoma',sans-serif
 
 .pages-wrap
   width: 100%
@@ -41,15 +45,18 @@ a
 
 
 
-
-
-
 .loadAnimation
   -webkit-backface-visibility: visible !important
   backface-visibility: visible !important
   animation-timing-function: ease-in
   animation-name: fadeIn
 
+
+.clearfix:after
+  content: ""
+  display: block
+  clear: both
+  height: 0
 
 
 
@@ -73,3 +80,126 @@ a
     margin-left: auto
     margin-right: auto
     margin-top: 20px
+
+
+
+
+.info-page
+  text-align: left
+  & > h2
+    text-align: center
+    margin-bottom: 10px
+  &__content
+    display: flex
+    flex-direction: column
+    @media(min-width: $smalldesk)
+      flex-direction: row
+  &__grid
+    width: 100%
+    text-align: left
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    align-self: center
+    max-width: 300px
+    @media(min-width: $mobile)
+      max-width: 510px
+    @media(min-width: $smalldesk)
+      width: 50%
+      align-self: auto
+    img
+      max-width: 640px
+      width: 100%
+      height: auto
+  &__grid-title
+    cursor: pointer
+  &__text
+    width: 100%
+    font-size: 16px
+    line-height: 1.5
+    padding-left: 10px
+    padding-right: 10px
+    @media(min-width: $smalldesk)
+      width: 50%
+    h3
+      font-size: 25px
+      margin-top: 10px
+      margin-bottom: 5px
+    p
+      margin-top: 10px
+
+
+.card-modal
+  text-align: left
+  position: fixed
+  top: 50%
+  left: 50%
+  transform: translate(-50%,-50%)
+  display: none
+  z-index: 10
+  width: 100%
+  @media(min-width: $mobile)
+    width: auto
+  &__close
+    font-size: 45px
+    font-weight: bold
+    color: #000
+    position: absolute
+    right: 10px
+    top: 5px
+    width: 30px
+    height: 30px
+    cursor: pointer
+    box-sizing: content-box
+    z-index: 10
+
+
+.small-display-hidden
+  display: none !important
+  @media(min-width: $mobile)
+    display: inline-block !important
+
+.big-display-hidden
+  display: inline-block !important
+  margin-top: 10px
+  @media(min-width: $mobile)
+    display: none !important
+
+.hover
+  display: none
+  width: 100vw
+  height: 100vh
+  z-index: 5
+  top: 50%
+  left: 50%
+  transform: translate(-50%,-50%)
+  background-color: rgba(0, 0, 0, .6)
+  position: fixed
+  cursor: pointer
+
+.show
+  display: block
+  -webkit-backface-visibility: visible !important
+  backface-visibility: visible !important
+  animation-timing-function: ease-in
+  animation-name: fadeIn
+  animation-duration: .2s
+  animation-fill-mode: both
+
+
+.register
+  &__modal
+    position: fixed
+    width: 100%
+    max-width: 400px
+    z-index: 15
+    background-color: #fff
+    top: 50%
+    left: 50%
+    transform: translate(-50%,-50%)
+  &__wrap
+    position: relative
+    right: -20px
+    top: -20px
+  &__paper
+    padding: 20px

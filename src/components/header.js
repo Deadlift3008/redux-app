@@ -3,7 +3,6 @@ import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
-import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import DropDownMenu from 'material-ui/DropDownMenu';
@@ -41,7 +40,10 @@ export default class Header extends Component{
                     </DropDownMenu>
                 </ToolbarGroup>
                 <ToolbarGroup>
-                    <RaisedButton label="Register" primary={true} />
+                    <RaisedButton label="Register"
+                                  primary={true}
+                                  className="register__button small-display-hidden"
+                                  onTouchTap={this.props.openModal}/>
                     <IconMenu
                         iconButtonElement={
                             <IconButton touch={true}>
