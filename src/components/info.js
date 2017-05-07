@@ -78,6 +78,7 @@ export default class Info extends Component{
         });
     }
     componentDidMount(){
+        // for desktop
         let width  = getComputedStyle(document.querySelector(".info-page__grid")).maxWidth;
         if(document.documentElement.clientWidth > parseInt(width)){
             this.setState({...this.state,cols: 2});

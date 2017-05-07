@@ -50,12 +50,11 @@ export default class AddItem extends Component{
             this.props.addItem(this.state.item_to_add);
         }
 
-        console.log(this.state);
     }
 
     setItemValue(e,value){
         let temp,dis;
-
+        // remember values for adding it
         switch(e.target.dataset.type){
             case "name":
                 temp = this.state.item_to_add;
@@ -91,7 +90,7 @@ export default class AddItem extends Component{
         if (stepIndex > 0) {
             this.setState({stepIndex: stepIndex - 1, finished: false});
         }
-
+        // if user already added item
         if(stepIndex > 2){
             this.setState({stepIndex: 0, finished: false});
         }
@@ -136,6 +135,7 @@ export default class AddItem extends Component{
         const {finished, stepIndex} = this.state;
 
         let buttonPlace;
+        //if user added item
         if(stepIndex <= 2){
             buttonPlace =  <RaisedButton
                                 label={finished ? 'Finish' : 'Next'}

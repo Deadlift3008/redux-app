@@ -5,6 +5,7 @@ export function Route(state = {}){
     state.currentPageId = null;
     state.currentPage = null;
 
+    //find route
     ROUTES.forEach(function(item,i,arr){
         if(window.location.hash === item.hash){
             state.currentPageId = item.page_id;

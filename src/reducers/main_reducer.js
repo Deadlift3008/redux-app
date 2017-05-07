@@ -9,6 +9,8 @@ export default function MainReducer(state = intialState, action){
             return {...state, open_modal: action.payload};
         case "add_item":
             copyState = JSON.parse(JSON.stringify(state));
+
+            //set id for items
             if(!copyState.list_items){
                 copyState.list_items = [];
                 action.payload.id = 1;
@@ -21,6 +23,8 @@ export default function MainReducer(state = intialState, action){
         case "remove_item":
             copyState = JSON.parse(JSON.stringify(state));
             let indexDelete;
+            //find delete index in array
+            //id is not necessarily equal to array index
             copyState.list_items.forEach(function(item,i,arr){
                 if(item.id == action.payload.id){
                     indexDelete = i;

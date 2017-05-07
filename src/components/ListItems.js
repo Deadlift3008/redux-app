@@ -17,7 +17,7 @@ export default class ListItems extends Component{
     }
 
     render(){
-        let list;
+        let list,msg;
         if(this.props.list){
             list = this.props.list.map((item,i,arr) => {
                 return  <TableRow key={i}>
@@ -31,9 +31,11 @@ export default class ListItems extends Component{
 
                         </TableRow>
             });
+        }
+        if(!this.props.list || this.props.list.length == 0){
+            msg = <h2>No one item has been added yet</h2>;
         }else{
-            // list = <h2>No one item has been added yet</h2>;
-            list = "No one item has been added yet";
+            msg = '';
         }
 
 
@@ -52,7 +54,7 @@ export default class ListItems extends Component{
                         {list}
                     </TableBody>
                 </Table>
-
+                {msg}
             </div>
     }
 }
