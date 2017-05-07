@@ -15,3 +15,17 @@ export function setRegisterModal(value){
 
 }
 
+export function addItem(item){
+    return{
+        type: "add_item",
+        payload: item
+    }
+}
+
+export function removeItem(item){
+    return{
+        type: "remove_item",
+        payload: item
+    }
+}
+

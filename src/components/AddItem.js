@@ -16,54 +16,137 @@ export default class AddItem extends Component{
 
         this.state = {
             finished: false,
-            stepIndex: 0
+            stepIndex: 0,
+            item_to_add: {
+                name: null,
+                description: null,
+                value: 0.5
+            },
+            disabled: {
+                0: true,
+                1: true,
+                2: false
+            }
         };
 
         this.handleNext = this.handleNext.bind(this);
         this.handlePrev = this.handlePrev.bind(this);
         this.getStepContent = this.getStepContent.bind(this);
+
+        this.setItemValue = this.setItemValue.bind(this);
+
+
     }
 
-    handleNext(){
+    handleNext(e){
         const {stepIndex} = this.state;
+
         this.setState({
             stepIndex: stepIndex + 1,
-            finished: stepIndex >= 2,
+            finished: stepIndex > 0,
         });
+
+        if(this.state.finished){
+            this.props.addItem(this.state.item_to_add);
+        }
+
+        console.log(this.state);
     }
+
+    setItemValue(e,value){
+        let temp,dis;
+
+        switch(e.target.dataset.type){
+            case "name":
+                temp = this.state.item_to_add;
+                temp.name = value;
+                dis = this.state.disabled;
+                dis[0] = false;
+                this.setState({item_to_add: temp,
+                    disabled: dis
+                });
+                break;
+            case "desc":
+                temp = this.state.item_to_add;
+                temp.description = value;
+                dis = this.state.disabled;
+                dis[1] = false;
+                this.setState({item_to_add: temp,
+                    disabled: dis
+                });
+                break;
+            default:
+                temp = this.state.item_to_add;
+                temp.value = value;
+                this.setState({item_to_add: temp});
+        }
+
+
+
+    }
+
 
     handlePrev(){
         const {stepIndex} = this.state;
         if (stepIndex > 0) {
-            this.setState({stepIndex: stepIndex - 1});
+            this.setState({stepIndex: stepIndex - 1, finished: false});
+        }
+
+        if(stepIndex > 2){
+            this.setState({stepIndex: 0, finished: false});
         }
     }
-
     getStepContent(){
         switch(this.state.stepIndex){
             case 0:
-                return <TextField
-                            hintText="Name"
-                            floatingLabelText="Input your name"
-                        />;
+                return <div className="main-page__name main-page__input">
+                            <TextField
+                                        hintText="Name"
+                                        floatingLabelText="Input your name"
+                                        onChange={this.setItemValue}
+                                        data-type="name"
+                                    />
+                        </div>;
             case 1:
-                return <TextField
-                    hintText="Description"
-                    floatingLabelText="Input your description"
-                    multiLine={true}
-                    rows={2}
-                />;
+                return <div className="main-page__desc main-page__input">
+                            <TextField
+                                hintText="Description"
+                                floatingLabelText="Input your description"
+                                multiLine={true}
+                                rows={2}
+                                onChange={this.setItemValue}
+                                data-type="desc"
+                            />
+                    </div>;
             case 2:
-                return <div className="main-page__slider">
+                return <div className="main-page__slider main-page__input">
                             <h3>Input your value</h3>
-                            <Slider defaultValue={0.5} />
+                            <Slider
+                                defaultValue={0.5}
+                                onChange={this.setItemValue}
+                                data-type="slider"
+                            />
                         </div>;
 
         }
     }
 
+
     render(){
         const {finished, stepIndex} = this.state;
+
+        let buttonPlace;
+        if(stepIndex <= 2){
+            buttonPlace =  <RaisedButton
+                                label={finished ? 'Finish' : 'Next'}
+                                primary={true}
+                                onTouchTap={this.handleNext}
+                                disabled={this.state.disabled[stepIndex]}
+                            />
+        }else{
+            buttonPlace = <FlatButton label="Added!" secondary={true} />
+        }
+
         return <div className="main-page__add-item">
                     <h2>Add items</h2>
                     <Stepper activeStep={stepIndex}>
@@ -86,11 +169,7 @@ export default class AddItem extends Component{
                                 onTouchTap={this.handlePrev}
                                 style={{marginRight: 12}}
                             />
-                            <RaisedButton
-                                label={stepIndex === 2 ? 'Finish' : 'Next'}
-                                primary={true}
-                                onTouchTap={this.handleNext}
-                            />
+                            {buttonPlace}
                         </div>
                     </div>
                 </div>

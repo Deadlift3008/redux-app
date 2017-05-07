@@ -18,6 +18,12 @@ export default class Main extends Component{
         });
     }
     render(){
+        let inscription;
+        if(this.props.list && this.props.list.length > 0){
+            inscription = "(" + this.props.list.length + ")";
+        }else{
+            inscription = "";
+        }
         return <div className="main-page">
                     <h2>Main</h2>
                     <Tabs
@@ -25,11 +31,11 @@ export default class Main extends Component{
                         onChange={this.handleChange}
                         className="main-page__tabs"
                     >
-                        <Tab label="List items" value="list">
-                            <ListItems />
+                        <Tab label={"List items " + inscription } value="list">
+                            <ListItems list={this.props.list} removeItem={this.props.removeItem}/>
                         </Tab>
                         <Tab label="Add item" value="add">
-                            <AddItem />
+                            <AddItem addItem={this.props.addItem}/>
                         </Tab>
                     </Tabs>
                </div>

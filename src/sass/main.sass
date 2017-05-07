@@ -80,6 +80,10 @@ a
     margin-left: auto
     margin-right: auto
     margin-top: 20px
+  &__list-items
+    h2
+      text-align: center
+      font-weight: normal
 
 
 
@@ -101,9 +105,7 @@ a
     flex-wrap: wrap
     justify-content: center
     align-self: center
-    max-width: 300px
-    @media(min-width: $mobile)
-      max-width: 510px
+    max-width: 510px
     @media(min-width: $smalldesk)
       width: 50%
       align-self: auto
@@ -203,3 +205,6 @@ a
     top: -20px
   &__paper
     padding: 20px
+
+.error
+  background-color: red

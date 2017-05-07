@@ -38,6 +38,8 @@ class App extends Component{
             this.animate(this.state.paper);
         });
 
+
+
     }
 
 
@@ -48,14 +50,12 @@ class App extends Component{
         },300);
     }
 
-    componentDidMount(){
-        this.state.paper = document.querySelector(".pages-wrap__paper");
-    }
-
     getPage(){
         switch(this.props.currentPage){
             case "Main":
-                return <Main />;
+                return <Main list={this.props.list}
+                             addItem={this.props.Actions.addItem}
+                             removeItem={this.props.Actions.removeItem}/>;
                 break;
             case "Info":
                 return <Info />;
@@ -64,7 +64,9 @@ class App extends Component{
                 return <Other />;
                 break;
             default:
-                return <Main />;
+                return <Main list={this.props.list}
+                             addItem={this.props.Actions.addItem}
+                            removeItem={this.props.Actions.removeItem}/>;
                 break;
         }
     }
@@ -76,6 +78,7 @@ class App extends Component{
     closeRegisterModal(){
         this.props.Actions.setRegisterModal(false);
     }
+
 
 
     render(){
@@ -105,7 +108,8 @@ function mapStateToProps(state) {
         state: state,
         currentPageId: state.currentPageId,
         currentPage: state.currentPage,
-        open_modal: state.open_modal
+        open_modal: state.open_modal,
+        list: state.list_items
     }
 }
 

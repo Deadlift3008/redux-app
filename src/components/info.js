@@ -58,7 +58,7 @@ export default class Info extends Component{
         super(props);
         this.state = {
             currentClass: "",
-            currentSrc: "src/images/00-52-29-429_640.jpg",
+            currentSrc: "",
             cols: 1
         };
 
@@ -90,7 +90,7 @@ export default class Info extends Component{
             <div className="info-page__content clearfix">
                 <InfoText />
                 <GridList
-                    cellHeight={180}
+                    cellHeight={"auto"}
                     className="info-page__grid"
                     cols={this.state.cols}
                 >
