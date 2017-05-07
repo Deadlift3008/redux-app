@@ -79,6 +79,11 @@ class App extends Component{
         this.props.Actions.setRegisterModal(false);
     }
 
+    componentDidMount(){
+        this.setState({
+            paper: document.querySelector(".pages-wrap__paper")
+        });
+    }
 
 
     render(){
