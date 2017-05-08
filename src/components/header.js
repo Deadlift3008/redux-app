@@ -27,6 +27,8 @@ export default class Header extends Component{
     linkTo(hash,e){
         window.location.hash = hash;
     }
+    
+
     render(){
         return <div className="header">
             <Toolbar>
@@ -51,10 +53,12 @@ export default class Header extends Component{
                             </IconButton>
                         }
                     >
-                        <MenuItem primaryText="Git repository" />
-                        <MenuItem primaryText="More Info" />
+                        <a href="https://github.com/Deadlift3008/redux-app" target="_blank" rel="noopener noreferer">
+                            <MenuItem primaryText="Git repository" />
+                        </a>
                     </IconMenu>
                 </ToolbarGroup>
+
             </Toolbar>
         </div>
     }

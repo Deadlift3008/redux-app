@@ -33,6 +33,30 @@ export default function MainReducer(state = intialState, action){
 
             copyState.list_items.splice(indexDelete,1);
             return copyState;
+        case "style_main_container":
+            copyState = JSON.parse(JSON.stringify(state));
+            if(copyState.styleMain){
+                for(var i in action.payload){
+                    copyState.styleMain[i] = action.payload[i];
+                }
+            }else{
+                copyState.styleMain = action.payload;
+            }
+
+            return copyState;
+        case "style_page":
+            copyState = JSON.parse(JSON.stringify(state));
+            let page = action.payload.page;
+            delete action.payload.page;
+            if(copyState.stylePage && copyState.stylePage[page]){
+                for(var i in action.payload){
+                    copyState.stylePage[page] = action.payload[i];
+                }
+            }else{
+                copyState.stylePage[page] = action.payload;
+            }
+
+            return copyState;
         default:
             return state;
     }

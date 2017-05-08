@@ -29,3 +29,17 @@ export function removeItem(item){
     }
 }
 
+export function styleMainContainer(styles){
+    return{
+        type: "style_main_container",
+        payload: styles
+    }
+}
+
+export function stylePage(config){
+    return{
+        type: "style_page",
+        payload: config
+    }
+}
+

@@ -61,7 +61,7 @@ class App extends Component{
                 return <Info />;
                 break;
             case "Other":
-                return <Other />;
+                return <Other styleMain={this.props.Actions.styleMainContainer}/>;
                 break;
             default:
                 return <Main list={this.props.list}
@@ -91,6 +91,7 @@ class App extends Component{
 
         let classes = (this.props.open_modal) ? 'hover show' : '';
 
+
         return <MuiThemeProvider>
                     <div className="pages-wrap">
                         <Header dropDownValue={this.props.currentPageId} openModal={this.openRegisterModal} />
@@ -98,7 +99,7 @@ class App extends Component{
                                       primary={true}
                                       className="register__button big-display-hidden"
                                       onTouchTap={this.openRegisterModal}/>
-                        <Paper className="pages-wrap__paper" zDepth={3} >
+                        <Paper className="pages-wrap__paper" zDepth={3} style={this.props.styleMain}>
                             {Page}
                         </Paper>
                         <RegisterModal open={this.props.open_modal} closeModal={this.closeRegisterModal}/>
@@ -114,7 +115,9 @@ function mapStateToProps(state) {
         currentPageId: state.currentPageId,
         currentPage: state.currentPage,
         open_modal: state.open_modal,
-        list: state.list_items
+        list: state.list_items,
+        stylePage: state.stylePage,
+        StyleMain: state.styleMain
     }
 }
 
