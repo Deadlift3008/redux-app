@@ -68,6 +68,10 @@ export default class RegisterModal extends Component{
         state[type].value = value;
         state[type].validation = state[type].validate_instructions(value);
 
+        if(type=="password"){
+            state.repeat_password.validation = false;
+        }
+
         if(!state[type].validation){
             state[type].currentErrorText = state[type].message;
         }else{
