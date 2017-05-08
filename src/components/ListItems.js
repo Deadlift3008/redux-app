@@ -41,8 +41,8 @@ export default class ListItems extends Component{
 
 
         return <div className="main-page__list-items">
-                <Table>
-                    <TableHeader>
+                <Table selectable={false}>
+                    <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
                         <TableRow>
                             <TableHeaderColumn>ID</TableHeaderColumn>
                             <TableHeaderColumn>Name</TableHeaderColumn>
@@ -50,7 +50,7 @@ export default class ListItems extends Component{
                             <TableHeaderColumn>Value</TableHeaderColumn>
                         </TableRow>
                     </TableHeader>
-                    <TableBody>
+                    <TableBody displayRowCheckbox={false}>
                         {list}
                     </TableBody>
                 </Table>

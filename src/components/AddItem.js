@@ -92,9 +92,18 @@ export default class AddItem extends Component{
         }
         // if user already added item
         if(stepIndex > 2){
-            this.setState({stepIndex: 0, finished: false});
+            this.setState({
+                stepIndex: 0,
+                finished: false,
+                disabled: {
+                    0: true,
+                    1: true,
+                    2: false
+            }});
         }
     }
+
+
     getStepContent(){
         switch(this.state.stepIndex){
             case 0:
@@ -125,6 +134,7 @@ export default class AddItem extends Component{
                                 onChange={this.setItemValue}
                                 data-type="slider"
                             />
+                            <div className="main-page__value">Your value is {this.state.item_to_add.value}</div>
                         </div>;
 
         }
@@ -148,7 +158,7 @@ export default class AddItem extends Component{
         }
 
         return <div className="main-page__add-item">
-                    <h2>Add items</h2>
+                    <h2 className="main-page__header">Add items</h2>
                     <Stepper activeStep={stepIndex}>
                         <Step>
                             <StepLabel>Step 1</StepLabel>
@@ -164,7 +174,7 @@ export default class AddItem extends Component{
                         <div>{this.getStepContent()}</div>
                         <div style={{marginTop: 12}}>
                             <FlatButton
-                                label="Back"
+                                label={(stepIndex > 2) ? "add more" : "back"}
                                 disabled={stepIndex === 0}
                                 onTouchTap={this.handlePrev}
                                 style={{marginRight: 12}}
