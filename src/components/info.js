@@ -85,8 +85,6 @@ export default class Info extends Component{
         }
     }
     render(){
-        console.log("styles");
-        console.log(this.props.customizedStyles);
         return <div className="info-page" style={this.props.customizedStyles}>
             <h2>Info</h2>
             <Divider />

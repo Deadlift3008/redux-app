@@ -30,12 +30,28 @@ export default class Header extends Component{
     
 
     render(){
+        let dropDownStyles = {
+            fontSize: "18px",
+            textTransform: "uppercase",
+            marginTop: "-2px"
+        };
+        let iconStyle = {
+          backgroundColor: "rgba(0, 0, 0, 0.4)",
+          right: "0",
+          top: "0"
+        };
         return <div className="header">
             <Toolbar>
                 <ToolbarGroup firstChild={true}>
                     <ToolbarTitle text="Page" className="header__title"/>
                     <ToolbarSeparator />
-                    <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+                    <DropDownMenu
+                        value={this.state.value}
+                        onChange={this.handleChange}
+                        labelStyle={dropDownStyles}
+                        iconButton={<NavigationExpandMoreIcon />}
+                        iconStyle={iconStyle}
+                    >
                         <MenuItem value={1} primaryText="Main" onClick={this.linkTo.bind(this,"")}/>
                         <MenuItem value={2} primaryText="Info" onClick={this.linkTo.bind(this,"info")}/>
                         <MenuItem value={3} primaryText="Other" onClick={this.linkTo.bind(this,"other")}/>
