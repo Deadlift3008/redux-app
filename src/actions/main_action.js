@@ -1,6 +1,23 @@
+import {
+    UPDATE_PAGE,
+    REGISTER_MODAL
+} from "../constants/pages";
+
+import {
+    ADD_ITEM,
+    REMOVE_ITEM
+} from "../constants/items";
+
+import {
+    STYLE_MAIN_CONTAINER,
+    STYLE_PAGE,
+    RESET_STYLES
+} from "../constants/customization";
+
+
 export function UpdatePage(){
     return {
-        type: "update_page",
+        type: UPDATE_PAGE,
         payload: true
     }
 
@@ -9,7 +26,7 @@ export function UpdatePage(){
 
 export function setRegisterModal(value){
     return {
-        type: "register_modal",
+        type: REGISTER_MODAL,
         payload: value
     }
 
@@ -17,35 +34,35 @@ export function setRegisterModal(value){
 
 export function addItem(item){
     return{
-        type: "add_item",
+        type: ADD_ITEM,
         payload: item
     }
 }
 
 export function removeItem(item){
     return{
-        type: "remove_item",
+        type: REMOVE_ITEM,
         payload: item
     }
 }
 
 export function styleMainContainer(styles){
     return{
-        type: "style_main_container",
+        type: STYLE_MAIN_CONTAINER,
         payload: styles
     }
 }
 
 export function stylePage(config){
     return{
-        type: "style_page",
+        type: STYLE_PAGE,
         payload: config
     }
 }
 
 export function resetStyles(config){
     return{
-        type: "reset_styles",
+        type: RESET_STYLES,
         payload: config
     }
 }

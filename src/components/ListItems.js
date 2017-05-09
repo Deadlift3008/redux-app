@@ -8,12 +8,25 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
+import Snackbar from 'material-ui/Snackbar';
 
 
 export default class ListItems extends Component{
     constructor(props){
         super(props);
+        this.state = {
+            snackbar_open: false
+        };
+        this.handleRequestClose = this.handleRequestClose.bind(this);
+        this.showSnackbar = this.showSnackbar.bind(this);
+    }
 
+    handleRequestClose(){
+        this.setState({snackbar_open: false});
+    }
+
+    showSnackbar(){
+        this.setState({snackbar_open: true});
     }
 
     render(){
@@ -26,7 +39,12 @@ export default class ListItems extends Component{
                             <TableRowColumn>{item.description}</TableRowColumn>
                             <TableRowColumn>{item.value}</TableRowColumn>
                             <TableRowColumn>
-                                <RaisedButton label="Delete" primary={true} onTouchTap={this.props.removeItem.bind(this,item)}/>
+                                <div className="small-display-hidden" onTouchTap={this.showSnackbar}>
+                                    <RaisedButton label="Delete" primary={true} onTouchTap={this.props.removeItem.bind(this,item)}/>
+                                </div>
+                                <div className="big-display-hidden" onTouchTap={this.showSnackbar}>
+                                    <div className="cross" onTouchTap={this.props.removeItem.bind(this,item)}>&#215;</div>
+                                </div>
                             </TableRowColumn>
 
                         </TableRow>
@@ -55,6 +73,12 @@ export default class ListItems extends Component{
                     </TableBody>
                 </Table>
                 {msg}
+                <Snackbar
+                    open={this.state.snackbar_open}
+                    message="item deleted"
+                    autoHideDuration={3000}
+                    onRequestClose={this.handleRequestClose}
+                />
             </div>
     }
 }

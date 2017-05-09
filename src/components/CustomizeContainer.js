@@ -75,7 +75,6 @@ export default class CustomizeContainer extends Component{
             }
         }
 
-        console.log(changedStyles);
         this.props.styleMain(changedStyles);
 
         this.setState({snackbar_open: true, snackbar_message: "Styles applied"});

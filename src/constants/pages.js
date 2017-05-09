@@ -19,3 +19,5 @@ export const ROUTES = [
     }
 
 ];
+export const UPDATE_PAGE = "update_page";
+export const REGISTER_MODAL = "register_modal";
