@@ -35,13 +35,19 @@ export default function MainReducer(state = intialState, action){
             return copyState;
         case "style_main_container":
             copyState = JSON.parse(JSON.stringify(state));
+            console.log(copyState);
             if(copyState.styleMain){
                 for(var i in action.payload){
                     copyState.styleMain[i] = action.payload[i];
+                    //Particular case
+                    if(copyState.styleMain[i] == "#"){
+                        delete copyState.styleMain[i]
+                    }
                 }
             }else{
                 copyState.styleMain = action.payload;
             }
+
 
             return copyState;
         case "style_page":
@@ -51,6 +57,9 @@ export default function MainReducer(state = intialState, action){
             if(copyState.stylePage && copyState.stylePage[page]){
                 for(var i in action.payload){
                     copyState.stylePage[page] = action.payload[i];
+                    // if(copyState.stylePage[page] == "#"){
+                    //     delete copyState.stylePage[page];
+                    // }
                 }
             }else{
                 copyState.stylePage[page] = action.payload;

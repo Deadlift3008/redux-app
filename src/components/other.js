@@ -35,7 +35,7 @@ export default class Other extends Component{
                         onChange={this.handleTab}
                     >
                         <Tab label="Container" value="container">
-                            <CustomizeContainer />
+                            <CustomizeContainer styleMain={this.props.styleMain} />
                         </Tab>
                         <Tab label="Main page" value="main_page">
                             <CustomizePage page="main"/>

@@ -15,39 +15,55 @@ export default class CustomizeContainer extends Component{
             borderRadius: null,
             fontSize: null,
             lineHeight: null
-        }
+        };
 
         this.setContainerValues = this.setContainerValues.bind(this);
-        this.handleBgSelect = this.handleBgSelect.bind(this);
-        this.handleFontColorSelect = this.handleFontColorSelect.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
+
+        this.setContainer = this.setContainer.bind(this);
     }
     setContainerValues(e,value){
         let state = this.state;
         switch(e.target.dataset.type){
             case "width":
+                state[e.target.dataset.type] = value;
+                this.setState(state);
                 break;
             case "borderRadius":
+                state[e.target.dataset.type] = value;
+                this.setState(state);
                 break;
             case "fontSize":
+                state[e.target.dataset.type] = value;
+                this.setState(state);
                 break;
             case "lineHeight":
+                state[e.target.dataset.type] = value;
+                this.setState(state);
                 break;
             default:
-                state.styleMain[e.target.dataset.type] = value;
+                state[e.target.dataset.type] = value;
                 this.setState(state);
                 break;
         }
     }
-    handleBgSelect(e,index,value){
+    handleSelect(type,e,index,value){
         this.setState({
-            backgroundColor: value
+            [type]: value
         });
     }
-    handleFontColorSelect(e,index,value){
-        this.setState({
-            color: value
-        });
+
+    setContainer(){
+        let changedStyles = {};
+        for(var i in this.state){
+            if(this.state[i]!==null){
+                changedStyles[i] = this.state[i];
+            }
+        }
+
+        this.props.styleMain(changedStyles);
     }
+
     render(){
         return  <div className="other-page__tab">
                     <br/>
@@ -88,9 +104,7 @@ export default class CustomizeContainer extends Component{
                     <SelectField
                         floatingLabelText="Container background color"
                         value={this.state.backgroundColor}
-                        onChange={this.handleBgSelect}
-                        data-type="backgroundColor"
-                        data-section="container"
+                        onChange={this.handleSelect.bind(this,"backgroundColor")}
                         className="other-page__select"
                     >
                         <MenuItem value="#" primaryText="Default" />
@@ -104,9 +118,7 @@ export default class CustomizeContainer extends Component{
                     <SelectField
                         floatingLabelText="Container font color"
                         value={this.state.color}
-                        onChange={this.handleFontColorSelect}
-                        data-type="color"
-                        data-section="container"
+                        onChange={this.handleSelect.bind(this,"color")}
                         className="other-page__select"
                     >
                         <MenuItem value="#" primaryText="Default" />
@@ -118,7 +130,7 @@ export default class CustomizeContainer extends Component{
                     </SelectField>
                     <br/>
                     <br/>
-                    <RaisedButton label="Apply" primary={true} />
+                    <RaisedButton label="Apply" primary={true} onTouchTap={this.setContainer}/>
                     <FlatButton label="Reset all styles" secondary={true} />
                 </div>
     }
