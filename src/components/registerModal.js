@@ -119,7 +119,7 @@ export default class RegisterModal extends Component{
         },3000)
 
         setTimeout(() => {
-            this.props.closeModal();
+            window.location.reload();
         },5000)
 
     }
@@ -129,6 +129,10 @@ export default class RegisterModal extends Component{
             return <div></div>;
         }
 
+        let errorStyles = {
+          position: "absolute",
+          bottom: "-10px"
+        };
 
         return <div className="register__modal show">
                     <Paper zDepth={2} className="register__paper">
@@ -142,6 +146,7 @@ export default class RegisterModal extends Component{
                                 data-type="name"
                                 onChange={this.handleInput}
                                 errorText={this.state.name.currentErrorText}
+                                errorStyle={errorStyles}
                             />
                             <TextField
                                 hintText="Password"
@@ -150,6 +155,7 @@ export default class RegisterModal extends Component{
                                 data-type="password"
                                 onChange={this.handleInput}
                                 errorText={this.state.password.currentErrorText}
+                                errorStyle={errorStyles}
                             />
                             <TextField
                                 hintText="Repeat Password"
@@ -158,13 +164,16 @@ export default class RegisterModal extends Component{
                                 data-type="repeat_password"
                                 onChange={this.handleInput}
                                 errorText={this.state.repeat_password.currentErrorText}
+                                errorStyle={errorStyles}
                             />
+                            <br/>
                             <TextField
                                 hintText="Email"
                                 floatingLabelText="Input your email"
                                 data-type="email"
                                 onChange={this.handleInput}
                                 errorText={this.state.email.currentErrorText}
+                                errorStyle={errorStyles}
                             />
                             <br/>
                             <br/>

@@ -85,7 +85,9 @@ export default class Info extends Component{
         }
     }
     render(){
-        return <div className="info-page">
+        console.log("styles");
+        console.log(this.props.customizedStyles);
+        return <div className="info-page" style={this.props.customizedStyles}>
             <h2>Info</h2>
             <Divider />
             <div className="info-page__content clearfix">

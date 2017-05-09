@@ -51,22 +51,41 @@ class App extends Component{
     }
 
     getPage(){
+        let mainStyles,infoStyles;
+        if(this.props.stylePage && this.props.stylePage.main){
+            mainStyles = this.props.stylePage.main;
+        }else{
+            mainStyles = {};
+        }
+
+        if(this.props.stylePage && this.props.stylePage.info){
+            infoStyles = this.props.stylePage.info;
+        }else{
+            infoStyles = {};
+        }
         switch(this.props.currentPage){
             case "Main":
                 return <Main list={this.props.list}
                              addItem={this.props.Actions.addItem}
-                             removeItem={this.props.Actions.removeItem}/>;
+                             removeItem={this.props.Actions.removeItem}
+                             customizedStyles={mainStyles}
+                        />;
                 break;
             case "Info":
-                return <Info />;
+                return <Info customizedStyles={infoStyles}/>;
                 break;
             case "Other":
-                return <Other styleMain={this.props.Actions.styleMainContainer}/>;
+                return <Other styleMain={this.props.Actions.styleMainContainer}
+                              stylePage={this.props.Actions.stylePage}
+                              resetStyles={this.props.Actions.resetStyles}
+                        />;
                 break;
             default:
                 return <Main list={this.props.list}
                              addItem={this.props.Actions.addItem}
-                            removeItem={this.props.Actions.removeItem}/>;
+                            removeItem={this.props.Actions.removeItem}
+                             customizedStyles={mainStyles}
+                        />;
                 break;
         }
     }

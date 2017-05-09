@@ -47,7 +47,6 @@ export default function MainReducer(state = intialState, action){
                 copyState.styleMain = action.payload;
             }
 
-            console.log(copyState);
             return copyState;
         case "style_page":
             copyState = JSON.parse(JSON.stringify(state));
@@ -56,12 +55,33 @@ export default function MainReducer(state = intialState, action){
             if(copyState.stylePage && copyState.stylePage[page]){
                 for(var i in action.payload){
                     copyState.stylePage[page] = action.payload[i];
-                    // if(copyState.stylePage[page] == "#"){
-                    //     delete copyState.stylePage[page];
-                    // }
+                    if(copyState.stylePage[page] == "#"){
+                        delete copyState.stylePage[page];
+                    }
                 }
             }else{
+                copyState.stylePage = {};
                 copyState.stylePage[page] = action.payload;
+            }
+
+            return copyState;
+        case "reset_styles":
+            copyState = JSON.parse(JSON.stringify(state));
+
+            switch(action.payload.type){
+                case "container":
+                    copyState.styleMain = {};
+                    break;
+                case "main":
+                    if(copyState.stylePage){
+                        copyState.stylePage.main = {};
+                    }
+                    break;
+                case "info":
+                    if(copyState.stylePage){
+                        copyState.stylePage.info = {};
+                    }
+                    break;
             }
 
             return copyState;

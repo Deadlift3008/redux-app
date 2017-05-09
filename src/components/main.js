@@ -24,7 +24,7 @@ export default class Main extends Component{
         }else{
             inscription = "";
         }
-        return <div className="main-page">
+        return <div className="main-page" style={this.props.customizedStyles}>
                     <h2>Main</h2>
                     <Tabs
                         value={this.state.tab}

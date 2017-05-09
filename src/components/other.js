@@ -35,13 +35,24 @@ export default class Other extends Component{
                         onChange={this.handleTab}
                     >
                         <Tab label="Container" value="container">
-                            <CustomizeContainer styleMain={this.props.styleMain} />
+                            <CustomizeContainer
+                                styleMain={this.props.styleMain}
+                                resetStyles={this.props.resetStyles}
+                            />
                         </Tab>
                         <Tab label="Main page" value="main_page">
-                            <CustomizePage page="main"/>
+                            <CustomizePage
+                                page="main"
+                                stylePage={this.props.stylePage}
+                                resetStyles={this.props.resetStyles}
+                            />
                         </Tab>
                         <Tab label="Info page" value="info_page">
-                            <CustomizePage page="info"/>
+                            <CustomizePage
+                                page="info"
+                                stylePage={this.props.stylePage}
+                                resetStyles={this.props.resetStyles}
+                            />
                         </Tab>
                     </Tabs>
                 </div>

@@ -43,3 +43,10 @@ export function stylePage(config){
     }
 }
 
+export function resetStyles(config){
+    return{
+        type: "reset_styles",
+        payload: config
+    }
+}
+

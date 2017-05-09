@@ -21,41 +21,24 @@ export default class CustomizeContainer extends Component{
         this.handleSelect = this.handleSelect.bind(this);
 
         this.setContainer = this.setContainer.bind(this);
+        this.checkUnits = this.checkUnits.bind(this);
+        this.resetStyles = this.resetStyles.bind(this);
     }
     setContainerValues(e,value){
         let state = this.state;
         let result;
         switch(e.target.dataset.type){
             case "width":
-                result = value.match(/\d+%/);
-                if( (result && result[0] == value ) || value==""){
-                    state[e.target.dataset.type] = value;
-                }else{
-                    state[e.target.dataset.type] = parseInt(value) + "px";
-                }
-
-                this.setState(state);
+                this.setState({width: this.checkUnits(value,/\d+%/)});
                 break;
             case "borderRadius":
-                result = value.match(/\d+%/);
-                if( (result && result[0] == value ) || value==""){
-                    state[e.target.dataset.type] = value;
-                }else{
-                    state[e.target.dataset.type] = parseInt(value) + "px";
-                }
+                this.setState({borderRadius: this.checkUnits(value,/\d+%/)});
                 break;
             case "fontSize":
-                state[e.target.dataset.type] = parseInt(value) + "px";
-                this.setState(state);
+                this.setState({fontSize: parseInt(value) + "px"});
                 break;
             case "lineHeight":
-                result = value.match(/\d+(\.\d+)?/);
-                if( (result && result[0] == value) || value==""){
-                    state[e.target.dataset.type] = value;
-                }else{
-                    state[e.target.dataset.type] = parseInt(value) + "px";
-                }
-                this.setState(state);
+                this.setState({lineHeight: this.checkUnits(value,/\d+(\.\d+)?/)});
                 break;
             default:
                 state[e.target.dataset.type] = value;
@@ -69,6 +52,14 @@ export default class CustomizeContainer extends Component{
         });
     }
 
+    checkUnits(value,regxp){
+        let result = value.match(regxp);
+        if( (result && result[0] == value ) || value==""){
+            return value;
+        }else{
+            return parseInt(value) + "px";
+        }
+    }
     setContainer(){
         let changedStyles = {};
         for(var i in this.state){
@@ -78,6 +69,10 @@ export default class CustomizeContainer extends Component{
         }
 
         this.props.styleMain(changedStyles);
+    }
+    resetStyles(){
+        this.props.resetStyles({type: "container"});
+
     }
 
     render(){
@@ -147,7 +142,7 @@ export default class CustomizeContainer extends Component{
                     <br/>
                     <br/>
                     <RaisedButton label="Apply" primary={true} onTouchTap={this.setContainer}/>
-                    <FlatButton label="Reset all styles" secondary={true} />
+                    <FlatButton label="Reset all styles" secondary={true} onTouchTap={this.resetStyles}/>
                 </div>
     }
 }
