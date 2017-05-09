@@ -2,6 +2,8 @@ import React, {PropTypes, Component} from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import Snackbar from 'material-ui/Snackbar';
+
 
 export default class CustomizePage extends Component{
     constructor(props){
@@ -13,7 +15,9 @@ export default class CustomizePage extends Component{
             paddingTop: null,
             paddingBottom: null,
             lineHeight: null,
-            fontSize: null
+            fontSize: null,
+            snackbar_open: false,
+            snackbar_message: ""
         };
 
         this.setValues = this.setValues.bind(this);
@@ -21,6 +25,8 @@ export default class CustomizePage extends Component{
 
         this.checkUnits = this.checkUnits.bind(this);
         this.resetStyles = this.resetStyles.bind(this);
+
+        this.handleRequestClose = this.handleRequestClose.bind(this);
     }
     setValues(e,value){
         let result;
@@ -57,15 +63,24 @@ export default class CustomizePage extends Component{
     setStyles(){
         let changedStyles = {};
         for(var i in this.state){
-            if(this.state[i]!==null){
+            if(this.state[i]!==null &&
+                i!=="snackbar_open" &&
+                i!=="snackbar_message"){
                 changedStyles[i] = this.state[i];
             }
         }
 
         this.props.stylePage(changedStyles);
+        let msg = this.props.page + " page styles applied";
+        this.setState({snackbar_open: true, snackbar_message: msg});
     }
     resetStyles(){
         this.props.resetStyles({type: this.props.page});
+        let msg = this.props.page + " page styles resetted";
+        this.setState({snackbar_open: true, snackbar_message: msg});
+    }
+    handleRequestClose(){
+        this.setState({snackbar_open: false});
     }
     render(){
         return  <div className="other-page__tab">
@@ -118,6 +133,12 @@ export default class CustomizePage extends Component{
                     <br/>
                     <RaisedButton label="Apply" primary={true} onTouchTap={this.setStyles}/>
                     <FlatButton label="Reset all styles" secondary={true} onTouchTap={this.resetStyles}/>
+                    <Snackbar
+                        open={this.state.snackbar_open}
+                        message={this.state.snackbar_message}
+                        autoHideDuration={3000}
+                        onRequestClose={this.handleRequestClose}
+                    />
                 </div>
     }
 

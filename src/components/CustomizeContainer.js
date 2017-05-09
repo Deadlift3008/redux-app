@@ -4,6 +4,8 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
+import Snackbar from 'material-ui/Snackbar';
+
 
 export default class CustomizeContainer extends Component{
     constructor(props){
@@ -14,7 +16,9 @@ export default class CustomizeContainer extends Component{
             width: null,
             borderRadius: null,
             fontSize: null,
-            lineHeight: null
+            lineHeight: null,
+            snackbar_open: false,
+            snackbar_message: ""
         };
 
         this.setContainerValues = this.setContainerValues.bind(this);
@@ -23,10 +27,11 @@ export default class CustomizeContainer extends Component{
         this.setContainer = this.setContainer.bind(this);
         this.checkUnits = this.checkUnits.bind(this);
         this.resetStyles = this.resetStyles.bind(this);
+
+        this.handleRequestClose = this.handleRequestClose.bind(this);
+
     }
     setContainerValues(e,value){
-        let state = this.state;
-        let result;
         switch(e.target.dataset.type){
             case "width":
                 this.setState({width: this.checkUnits(value,/\d+%/)});
@@ -63,18 +68,26 @@ export default class CustomizeContainer extends Component{
     setContainer(){
         let changedStyles = {};
         for(var i in this.state){
-            if(this.state[i]!==null){
+            if(this.state[i]!==null &&
+                i!=="snackbar_open" &&
+                i!=="snackbar_message"){
                 changedStyles[i] = this.state[i];
             }
         }
 
+        console.log(changedStyles);
         this.props.styleMain(changedStyles);
+
+        this.setState({snackbar_open: true, snackbar_message: "Styles applied"});
     }
     resetStyles(){
         this.props.resetStyles({type: "container"});
-
+        this.setState({snackbar_open: true, snackbar_message: "Styles resetted"});
     }
 
+    handleRequestClose(){
+        this.setState({snackbar_open: false});
+    }
     render(){
         return  <div className="other-page__tab">
                     <br/>
@@ -143,6 +156,12 @@ export default class CustomizeContainer extends Component{
                     <br/>
                     <RaisedButton label="Apply" primary={true} onTouchTap={this.setContainer}/>
                     <FlatButton label="Reset all styles" secondary={true} onTouchTap={this.resetStyles}/>
+                    <Snackbar
+                        open={this.state.snackbar_open}
+                        message={this.state.snackbar_message}
+                        autoHideDuration={3000}
+                        onRequestClose={this.handleRequestClose}
+                    />
                 </div>
     }
 }

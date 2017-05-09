@@ -8,6 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import Slider from 'material-ui/Slider';
+import Snackbar from 'material-ui/Snackbar';
 
 
 export default class AddItem extends Component{
@@ -26,7 +27,8 @@ export default class AddItem extends Component{
                 0: true,
                 1: true,
                 2: false
-            }
+            },
+            snackbar_open: false
         };
 
         this.handleNext = this.handleNext.bind(this);
@@ -35,6 +37,7 @@ export default class AddItem extends Component{
 
         this.setItemValue = this.setItemValue.bind(this);
 
+        this.handleRequestClose = this.handleRequestClose.bind(this);
 
     }
 
@@ -48,6 +51,7 @@ export default class AddItem extends Component{
 
         if(this.state.finished){
             this.props.addItem(this.state.item_to_add);
+            this.setState({snackbar_open: true});
         }
 
     }
@@ -99,10 +103,13 @@ export default class AddItem extends Component{
                     0: true,
                     1: true,
                     2: false
-            }});
+                }});
         }
     }
 
+    handleRequestClose(){
+        this.setState({snackbar_open: false});
+    }
 
     getStepContent(){
         switch(this.state.stepIndex){
@@ -182,6 +189,12 @@ export default class AddItem extends Component{
                             {buttonPlace}
                         </div>
                     </div>
+                    <Snackbar
+                        open={this.state.snackbar_open}
+                        message="Item added"
+                        autoHideDuration={3000}
+                        onRequestClose={this.handleRequestClose}
+                    />
                 </div>
     }
 }
