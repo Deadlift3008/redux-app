@@ -35,7 +35,6 @@ export default function MainReducer(state = intialState, action){
             return copyState;
         case "style_main_container":
             copyState = JSON.parse(JSON.stringify(state));
-            console.log(copyState);
             if(copyState.styleMain){
                 for(var i in action.payload){
                     copyState.styleMain[i] = action.payload[i];
@@ -48,7 +47,7 @@ export default function MainReducer(state = intialState, action){
                 copyState.styleMain = action.payload;
             }
 
-
+            console.log(copyState);
             return copyState;
         case "style_page":
             copyState = JSON.parse(JSON.stringify(state));

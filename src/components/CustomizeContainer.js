@@ -24,21 +24,37 @@ export default class CustomizeContainer extends Component{
     }
     setContainerValues(e,value){
         let state = this.state;
+        let result;
         switch(e.target.dataset.type){
             case "width":
-                state[e.target.dataset.type] = value;
+                result = value.match(/\d+%/);
+                if( (result && result[0] == value ) || value==""){
+                    state[e.target.dataset.type] = value;
+                }else{
+                    state[e.target.dataset.type] = parseInt(value) + "px";
+                }
+
                 this.setState(state);
                 break;
             case "borderRadius":
-                state[e.target.dataset.type] = value;
-                this.setState(state);
+                result = value.match(/\d+%/);
+                if( (result && result[0] == value ) || value==""){
+                    state[e.target.dataset.type] = value;
+                }else{
+                    state[e.target.dataset.type] = parseInt(value) + "px";
+                }
                 break;
             case "fontSize":
-                state[e.target.dataset.type] = value;
+                state[e.target.dataset.type] = parseInt(value) + "px";
                 this.setState(state);
                 break;
             case "lineHeight":
-                state[e.target.dataset.type] = value;
+                result = value.match(/\d+(\.\d+)?/);
+                if( (result && result[0] == value) || value==""){
+                    state[e.target.dataset.type] = value;
+                }else{
+                    state[e.target.dataset.type] = parseInt(value) + "px";
+                }
                 this.setState(state);
                 break;
             default:
